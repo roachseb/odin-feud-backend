@@ -6,4 +6,4 @@ app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    return {"Test": "Output"}
+    return {"This": "Update"}

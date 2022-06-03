@@ -2,9 +2,28 @@ from pandas import DataFrame, concat
 from pytrends.request import TrendReq
 from typing import List, Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 pytrends = TrendReq()
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+    "https://intense-castle-46815.herokuapp.com/"
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_suggestions(word:str) -> List[str]:
